@@ -1,1 +1,1 @@
-target_sources(devtool PRIVATE main.cpp)
+target_sources(devtool PRIVATE main.cpp SaveInfo.cpp)
