@@ -109,6 +109,8 @@ struct SaveInfo
         }
         return nullptr;
     }
+
+    int Render(void);
 };
 
 }; // namespace TRSE

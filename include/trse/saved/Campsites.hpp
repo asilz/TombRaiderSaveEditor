@@ -8,6 +8,8 @@ namespace TRSE
 struct CampsiteID
 {
     uint32_t m_campsiteID;
+
+    int Render(const char *label);
 };
 
 typedef enum CampsiteState
@@ -25,6 +27,8 @@ struct CampsiteData
     int m_progressionIndex;
     bool m_visited;
     bool m_viewedInCampsite;
+
+    int Render(const char *label);
 };
 
 struct SavedCampsites
@@ -36,6 +40,8 @@ struct SavedCampsites
     struct CampsiteData campsiteData[0];
 
     static constexpr uint8_t SAVED_ID = SAVED_ID_CAMPSITES;
+
+    int Render(const char *label);
 };
 
 }; // namespace TRSE

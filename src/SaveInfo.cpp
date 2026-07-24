@@ -1,5 +1,6 @@
 #include <cinttypes>
 #include <trse/SaveInfo.hpp>
+#include <trse/saved/ActionGraph.hpp>
 #include <zlib.h>
 
 namespace TRSE
@@ -26,6 +27,31 @@ int SaveInfo::ExtractSaveInfo(char *input, unsigned int input_size)
     if (ret != Z_STREAM_END)
     {
         return ret;
+    }
+
+    return 0;
+}
+
+int SaveInfo::Render(void)
+{
+    for (uint8_t *info = m_infoStart; info < m_infoStart + m_infoSize;
+         info = info + (*(reinterpret_cast<uint32_t *>(info)) >> 6 & 0x3fffffc))
+    {
+        int err;
+        switch (*info)
+        {
+        case SavedActionGraph::SAVED_ID:
+            err = reinterpret_cast<SavedActionGraph *>(info)->Render("SavedActionGraph");
+            break;
+
+        default:
+            err = 0;
+            break;
+        }
+        if (err)
+        {
+            return err;
+        }
     }
 
     return 0;

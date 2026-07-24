@@ -16,6 +16,8 @@ struct SavedActionGraph
     uint16_t nodeStreamSize;
 
     static constexpr uint8_t SAVED_ID = SAVED_ID_ACTIONGRAPH;
+
+    int Render(const char *label);
 };
 
 }; // namespace TRSE
