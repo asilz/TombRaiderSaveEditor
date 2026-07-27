@@ -9,7 +9,10 @@ struct CampsiteID
 {
     uint32_t m_campsiteID;
 
-    int Render(const char *label);
+    template <TemplateString label> int Render(void)
+    {
+        return GUI::Render<TemplateString("Hello") + label>(m_campsiteID);
+    }
 };
 
 typedef enum CampsiteState
@@ -28,7 +31,7 @@ struct CampsiteData
     bool m_visited;
     bool m_viewedInCampsite;
 
-    int Render(const char *label);
+    template <TemplateString label> int Render(void) { return m_id.Render<label>(); }
 };
 
 struct SavedCampsites
@@ -41,7 +44,7 @@ struct SavedCampsites
 
     static constexpr uint8_t SAVED_ID = SAVED_ID_CAMPSITES;
 
-    int Render(const char *label);
+    template <TemplateString label> int Render(void) {}
 };
 
 }; // namespace TRSE

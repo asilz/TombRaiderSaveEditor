@@ -23,16 +23,4 @@ static const char *GetCampsiteStateName(enum CampsiteState state)
     return nullptr;
 }
 
-int CampsiteID::Render(const char *label) { return GUI::Render<uint32_t>(m_campsiteID, "Campsite ID"); }
-
-int CampsiteData::Render(const char *label)
-{
-    int err = m_id.Render(label);
-    if (err)
-    {
-        return err;
-    }
-}
-
-int SavedCampsites::Render(const char *label) { return 0; }
 }; // namespace TRSE
