@@ -14,9 +14,9 @@ int SaveInfo::ExtractSaveInfo(char *input, unsigned int input_size)
     infstream.zalloc = Z_NULL;
     infstream.zfree = Z_NULL;
     infstream.opaque = Z_NULL;
-    infstream.avail_in = input_size;                              // size of input
-    infstream.next_in = (Bytef *)input;                           // input char array
-    infstream.avail_out = offsetof(SaveInfo, m_firstDeleteBlock); // size of output
+    infstream.avail_in = input_size;                                                           // size of input
+    infstream.next_in = (Bytef *)input;                                                        // input char array
+    infstream.avail_out = offsetof(SaveInfo, m_firstDeleteBlock) + sizeof(m_firstDeleteBlock); // size of output
     infstream.next_out = (Bytef *)this; // This is undefined behaviour, but I think this is what the game does
 
     int ret = inflateInit2(&infstream, 0xf); // 0xf because this is what rise does
