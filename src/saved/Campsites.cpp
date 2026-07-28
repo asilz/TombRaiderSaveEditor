@@ -23,16 +23,46 @@ static const char *GetCampsiteStateName(enum CampsiteState state)
     return nullptr;
 }
 
-int CampsiteID::Render(const char *label) { return GUI::Render<uint32_t>(m_campsiteID, "Campsite ID"); }
+int CampsiteID::Render(const char *label)
+{
+    (void)label;
+    return GUI::Render(m_campsiteID, label);
+}
 
 int CampsiteData::Render(const char *label)
 {
-    int err = m_id.Render(label);
-    if (err)
+    if (ImGui::TreeNode(label))
     {
-        return err;
+        GUI::Render(m_id, "m_id");
+        GUI::Render(m_state, "m_state");
+        GUI::Render(m_progressionIndex, "m_progressionIndex");
+        GUI::Render(m_visited, "m_visited");
+        GUI::Render(m_viewedInCampsite, "m_viewedInCampsite");
+        ImGui::TreePop();
+        return TRSE_RET_IMGUI_EDIT;
     }
+    return 0;
 }
 
-int SavedCampsites::Render(const char *label) { return 0; }
+int SavedCampsites::Render(const char *label)
+{
+    if (ImGui::TreeNode(label))
+    {
+        GUI::Render(currentCampsite, "currentCampsite");
+        GUI::Render(forwardCampsite, "forwardCampsite");
+        if (ImGui::TreeNode("campsiteData"))
+        {
+            for (int32_t i = 0; i < campsitesCount; ++i)
+            {
+                ImGui::PushID(i);
+                GUI::Render(campsiteData[i], "campsiteData");
+                ImGui::PopID();
+            }
+            ImGui::TreePop();
+        }
+        ImGui::TreePop();
+        return TRSE_RET_IMGUI_EDIT;
+    }
+    return 0;
+}
 }; // namespace TRSE

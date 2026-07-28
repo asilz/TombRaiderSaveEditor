@@ -1,9 +1,9 @@
 [submodule "extern/zlib"]
 	path = extern/zlib
 	url = https://github.com/madler/zlib.git
-[submodule "extern/imgui"]
-	path = extern/imgui
-	url = https://github.com/ocornut/imgui.git
 [submodule "extern/sdl3"]
 	path = extern/sdl3
 	url = https://github.com/libsdl-org/SDL.git
+[submodule "extern/imgui/remote"]
+	path = extern/imgui/remote
+	url = https://github.com/ocornut/imgui.git

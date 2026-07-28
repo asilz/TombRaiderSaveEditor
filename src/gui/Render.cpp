@@ -6,6 +6,25 @@ namespace TRSE
 
 namespace GUI
 {
+
+int RenderEnum(void *data, const char *label)
+{
+    if (ImGui::InputInt(label, static_cast<int *>(data)))
+    {
+        return TRSE_RET_IMGUI_EDIT;
+    }
+    return 0;
+}
+
+template <> int Render<bool>(bool &obj, const char *label)
+{
+    if (ImGui::Checkbox(label, &obj))
+    {
+        return TRSE_RET_IMGUI_EDIT;
+    }
+    return 0;
+}
+
 template <> int Render<int8_t>(int8_t &obj, const char *label)
 {
     if (ImGui::InputScalar(label, ImGuiDataType_::ImGuiDataType_S8, &obj))

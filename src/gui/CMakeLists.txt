@@ -1,1 +1,1 @@
-target_sources(devtool PRIVATE Render.cpp)
+target_sources(devtool PRIVATE Render.cpp Style.cpp Core.cpp)

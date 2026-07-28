@@ -10,7 +10,19 @@ namespace TRSE
 namespace GUI
 {
 
-template <class T> int Render(T &obj, const char *label) { return obj.Render(label); }
+int RenderEnum(void *data, const char *label);
+
+template <class T> int Render(T &obj, const char *label)
+{
+    if constexpr (std::is_enum<T>::value)
+    {
+        return RenderEnum(&obj, label);
+    }
+    else
+    {
+        return obj.Render(label);
+    }
+}
 
 template <> int Render<int8_t>(int8_t &obj, const char *label);
 template <> int Render<int16_t>(int16_t &obj, const char *label);
@@ -22,6 +34,7 @@ template <> int Render<uint32_t>(uint32_t &obj, const char *label);
 template <> int Render<uint64_t>(uint64_t &obj, const char *label);
 template <> int Render<float>(float &obj, const char *label);
 template <> int Render<double>(double &obj, const char *label);
+template <> int Render<bool>(bool &obj, const char *label);
 
 }; // namespace GUI
 

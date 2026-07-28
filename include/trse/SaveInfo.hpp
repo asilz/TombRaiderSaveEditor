@@ -110,7 +110,7 @@ struct SaveInfo
         return nullptr;
     }
 
-    int Render(void);
+    int Render(const char *label);
 };
 
 }; // namespace TRSE

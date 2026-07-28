@@ -36,7 +36,7 @@ struct SavedCampsites
     int64_t _padding_[2];
     struct CampsiteID currentCampsite;
     struct CampsiteID forwardCampsite;
-    int campsitesCount;
+    int32_t campsitesCount;
     struct CampsiteData campsiteData[0];
 
     static constexpr uint8_t SAVED_ID = SAVED_ID_CAMPSITES;
