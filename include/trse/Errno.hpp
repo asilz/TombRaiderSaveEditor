@@ -1,3 +1,5 @@
+#pragma once
+
 #define TRSE_ERR_IMGUI (-2)
 #define TRSE_ERR_RENDERER (-3)
 #define TRSE_ERR_WINDOW (-4)

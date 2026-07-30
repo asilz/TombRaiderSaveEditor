@@ -3,3 +3,4 @@ add_subdirectory(sdl3)
 add_subdirectory(imgui)
 
 target_link_libraries(devtool PRIVATE zlib imgui_lib)
+target_include_directories(devtool PRIVATE zlib)

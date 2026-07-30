@@ -95,7 +95,9 @@ struct SaveInfo
     struct SaveDataSizeInfo m_sizeInfo;
     uint32_t m_liveInstanceBlockMarker;
 
-    int ExtractSaveInfo(char *input, unsigned int input_size);
+    int ExtractSaveInfo(const unsigned char *input, unsigned int input_size);
+
+    int PackSaveInfo(unsigned char *output, unsigned int *output_size);
 
     template <typename T> T *GetBlock()
     {
