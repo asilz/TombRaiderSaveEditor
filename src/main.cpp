@@ -16,20 +16,27 @@ using namespace TRSE;
 int main(void)
 {
     char path[512] = "No file";
-    SaveInfo saveInfo;
-    GUI::Init();
+    SaveInfo *saveInfo = new SaveInfo();
+    saveInfo->m_infoSize = 0;
+    int err = GUI::Init();
+    if (err < 0)
+    {
+        printf("GUI::Init failed, err = %d\n", err);
+        return err;
+    }
 
     while (1)
     {
         if (GUI::StartFrame())
         {
+            printf("Quitting\n");
             break;
         }
 
         {
             ImGui::Begin(path);
 
-            if (saveInfo.m_infoSize)
+            if (saveInfo->m_infoSize)
             {
 
                 if (ImGui::Button("Export File"))
@@ -38,15 +45,15 @@ int main(void)
                     FILE *file = fopen(path, "wb");
                     if (file != nullptr)
                     {
-                        unsigned char *dst = new unsigned char[sizeof(saveInfo)];
-                        unsigned int size = sizeof(saveInfo);
-                        saveInfo.PackSaveInfo(dst, &size);
+                        unsigned char *dst = new unsigned char[sizeof(*saveInfo)];
+                        unsigned int size = sizeof(*saveInfo);
+                        saveInfo->PackSaveInfo(dst, &size);
                         fwrite(dst, size, 1, file);
                         fclose(file);
                         delete[] dst;
                     }
                 }
-                GUI::Render(saveInfo, "SaveInfo");
+                GUI::Render(*saveInfo, "SaveInfo");
             }
             else
             {
@@ -62,7 +69,7 @@ int main(void)
                         unsigned char *compressed = new unsigned char[file_size];
                         fread(compressed, file_size, 1, file);
                         fclose(file);
-                        int err = saveInfo.ExtractSaveInfo(compressed, file_size);
+                        int err = saveInfo->ExtractSaveInfo(compressed, file_size);
                         if (err)
                         {
                             printf("ExtractSaveInfo failed, err = %d\n", err);

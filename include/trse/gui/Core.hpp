@@ -4,7 +4,7 @@ namespace TRSE
 {
 namespace GUI
 {
-void Init(void);
+int Init(void);
 bool StartFrame(void);
 void EndFrame(void);
 void Destroy(void);

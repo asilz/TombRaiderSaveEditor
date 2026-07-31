@@ -58,7 +58,7 @@ int Init(void)
 
 bool StartFrame(void)
 {
-    bool done;
+    bool done = false;
 
     ImGui_ImplSDL3_Data *backend =
         ImGui::GetCurrentContext() ? (ImGui_ImplSDL3_Data *)ImGui::GetIO().BackendPlatformUserData : nullptr;

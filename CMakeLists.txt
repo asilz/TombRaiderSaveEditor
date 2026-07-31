@@ -14,6 +14,7 @@ if(UNIX)
         set(TRSE_TARGET_PLATFROM linux)
     endif()
 else()
+    set(BUILD_SHARED_LIBS OFF)
     set(TRSE_TARGET_PLATFROM win32)
 endif()
 
@@ -23,7 +24,7 @@ add_subdirectory(extern)
 
 
 
-target_compile_options(devtool PRIVATE -Wall -Wextra)
+target_compile_options(devtool PRIVATE -Wall)
 target_include_directories(devtool PRIVATE include)
 
 set (USE_ADDRESS_SANITIZER OFF CACHE BOOL "Should the Address Sanitizer tool be enabled?")
