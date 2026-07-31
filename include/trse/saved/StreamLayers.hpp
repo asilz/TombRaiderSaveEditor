@@ -9,6 +9,8 @@ namespace TRSE
 struct StreamLayerStates // TODO: Figure out the contents
 {
     uint8_t data[0x30];
+
+    int Render(const char *label);
 };
 
 struct SavedStreamLayerData
@@ -17,6 +19,8 @@ struct SavedStreamLayerData
     int numStreamLayers;
     struct StreamLayerStates active;
     struct StreamLayerStates loadRequested;
+
+    int Render(const char *label);
 };
 
 struct SavedStreamLayers
@@ -25,8 +29,10 @@ struct SavedStreamLayers
     struct StreamLayerStates globalChanged;
     struct StreamLayerStates globalLoaded;
     struct StreamLayerStates globalActive;
-    int numPlacements;
+    int32_t numPlacements;
     struct SavedStreamLayerData streamLayerData[0];
+
+    int Render(const char *label);
 
     static constexpr uint8_t SAVED_ID = SAVED_ID_STREAMLAYERDATA;
 };

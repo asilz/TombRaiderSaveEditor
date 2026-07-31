@@ -14,7 +14,26 @@
 #include <imgui.h>
 #include <trse/SaveInfo.hpp>
 #include <trse/saved/ActionGraph.hpp>
+#include <trse/saved/BasicInstance.hpp>
 #include <trse/saved/Campsites.hpp>
+#include <trse/saved/ColdDarkness.hpp>
+#include <trse/saved/CustomizationData.hpp>
+#include <trse/saved/DeadDeadList.hpp>
+#include <trse/saved/DeadDeadUnitList.hpp>
+#include <trse/saved/GameStateTimer.hpp>
+#include <trse/saved/Level.hpp>
+#include <trse/saved/MapData.hpp>
+#include <trse/saved/MissionObjectives.hpp>
+#include <trse/saved/ObjectZoneInstance.hpp>
+#include <trse/saved/ObjectZonePlacement.hpp>
+#include <trse/saved/PlacementVarInstance.hpp>
+#include <trse/saved/PlayerData.hpp>
+#include <trse/saved/ProgressionData.hpp>
+#include <trse/saved/RegionData.hpp>
+#include <trse/saved/StreamLayerQueue.hpp>
+#include <trse/saved/StreamLayers.hpp>
+#include <trse/saved/UnitLightData.hpp>
+#include <trse/saved/UnitLoadState.hpp>
 #include <zlib.h>
 
 namespace TRSE
@@ -92,8 +111,68 @@ int SaveInfo::Render(const char *label)
         ImGui::PushID(i++);
         switch (*info)
         {
+        case SavedActionGraph::SAVED_ID:
+            ret = reinterpret_cast<SavedActionGraph *>(info)->Render("SavedActionGraph");
+            break;
+        case SavedBasicInstance::SAVED_ID:
+            ret = reinterpret_cast<SavedBasicInstance *>(info)->Render("SavedBasicInstance");
+            break;
         case SavedCampsites::SAVED_ID:
             ret = reinterpret_cast<SavedCampsites *>(info)->Render("SavedCampsites");
+            break;
+        case SavedColdDarknessData::SAVED_ID:
+            ret = reinterpret_cast<SavedColdDarknessData *>(info)->Render("SavedColdDarknessData");
+            break;
+        case SavedCustomizationData::SAVED_ID:
+            ret = reinterpret_cast<SavedCustomizationData *>(info)->Render("SavedCustomizationData");
+            break;
+        case SavedDeadDeadList::SAVED_ID:
+            ret = reinterpret_cast<SavedDeadDeadList *>(info)->Render("SavedDeadDeadList");
+            break;
+        case SavedDeadDeadUnitList::SAVED_ID:
+            ret = reinterpret_cast<SavedDeadDeadUnitList *>(info)->Render("SavedDeadDeadUnitList");
+            break;
+        case SavedGameStateTimer::SAVED_ID:
+            ret = reinterpret_cast<SavedGameStateTimer *>(info)->Render("SavedGameStateTimer");
+            break;
+        case SavedLevel::SAVED_ID:
+            ret = reinterpret_cast<SavedLevel *>(info)->Render("SavedLevel");
+            break;
+        case SavedMapData::SAVED_ID:
+            ret = reinterpret_cast<SavedMapData *>(info)->Render("SavedMapData");
+            break;
+        case SavedMissionObjectives::SAVED_ID:
+            ret = reinterpret_cast<SavedMissionObjectives *>(info)->Render("SavedMissionObjectives");
+            break;
+        case SavedObjectZoneInstance::SAVED_ID:
+            ret = reinterpret_cast<SavedObjectZoneInstance *>(info)->Render("SavedObjectZoneInstance");
+            break;
+        case SavedObjectZonePlacement::SAVED_ID:
+            ret = reinterpret_cast<SavedObjectZonePlacement *>(info)->Render("SavedObjectZonePlacement");
+            break;
+        case SavedPlacementVarInstance::SAVED_ID:
+            ret = reinterpret_cast<SavedPlacementVarInstance *>(info)->Render("SavedPlacementVarInstance");
+            break;
+        case SavedPlayerData::SAVED_ID:
+            ret = reinterpret_cast<SavedPlayerData *>(info)->Render("SavedPlayerData");
+            break;
+        case SavedProgressionData::SAVED_ID:
+            ret = reinterpret_cast<SavedProgressionData *>(info)->Render("SavedProgressionData");
+            break;
+        case SavedRegionData::SAVED_ID:
+            ret = reinterpret_cast<SavedRegionData *>(info)->Render("SavedRegionData");
+            break;
+        case SavedStreamLayerQueue::SAVED_ID:
+            ret = reinterpret_cast<SavedStreamLayerQueue *>(info)->Render("SavedStreamLayerQueue");
+            break;
+        case SavedStreamLayers::SAVED_ID:
+            ret = reinterpret_cast<SavedStreamLayers *>(info)->Render("SavedStreamLayers");
+            break;
+        case SavedUnitLightData::SAVED_ID:
+            ret = reinterpret_cast<SavedUnitLightData *>(info)->Render("SavedUnitLightData");
+            break;
+        case SavedUnitLoadState::SAVED_ID:
+            ret = reinterpret_cast<SavedUnitLoadState *>(info)->Render("SavedUnitLoadState");
             break;
 
         default:

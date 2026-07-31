@@ -10,6 +10,8 @@ struct SavedGameStateTimer
     uint64_t gameStateTimerStoredTime;
     bool gameStateTimerRunning;
 
+    int Render(const char *label);
+
     static constexpr uint8_t SAVED_ID = SAVED_ID_GAMESTATE_TIMER;
 };
 }; // namespace TRSE

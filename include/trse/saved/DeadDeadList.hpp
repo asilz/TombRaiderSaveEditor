@@ -11,6 +11,8 @@ struct SavedDeadDeadList
     int deadDeadCount;
     uint64_t deadDeadList[0];
 
+    int Render(const char *label);
+
     static constexpr uint8_t SAVED_ID = SAVED_ID_DEADDEADLIST;
 };
 

@@ -17,6 +17,8 @@ struct SavedObjectZonePlacement
     uint32_t pad : 12;
     struct Vector3f data[0];
 
+    int Render(const char *label);
+
     static constexpr uint8_t SAVED_ID = SAVED_ID_OBJECTZONE_PLACEMENT;
 };
 

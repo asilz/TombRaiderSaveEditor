@@ -12,8 +12,10 @@ struct SavedObjectZoneInstance
     uint32_t objectZoneID;
     int birthUnitID;
     bool bPurgeableSaveInfo;
-    struct Vector3f position;
-    struct Vector3f reversedEulerRotation;
+    Vector3f position;
+    Vector3f reversedEulerRotation;
+
+    int Render(const char *label);
 
     static constexpr uint8_t SAVED_ID = SAVED_ID_OBJECTZONE_INSTANCE;
 };

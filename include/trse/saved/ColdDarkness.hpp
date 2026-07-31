@@ -16,9 +16,11 @@ struct SavedColdDarknessData
     uint32_t m_numShotsHit;
     uint32_t m_numShotsFired;
     uint32_t m_numPerfectTowerCompletions;
-    struct Bitset<5> m_challengesStarted;
-    struct Bitset<5> m_challengesFailed;
-    struct Bitset<5> m_challengesCompleted;
+    Bitset<5> m_challengesStarted;
+    Bitset<5> m_challengesFailed;
+    Bitset<5> m_challengesCompleted;
+
+    int Render(const char *label);
 
     static constexpr uint8_t SAVED_ID = SAVED_ID_COLD_DARKNESS;
 };

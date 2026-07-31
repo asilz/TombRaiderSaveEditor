@@ -1,1 +1,22 @@
-target_sources(devtool PRIVATE ActionGraph.cpp Campsites.cpp)
+target_sources(devtool PRIVATE ActionGraph.cpp
+                               BasicInstance.cpp
+                               Campsites.cpp
+                               ColdDarkness.cpp
+                               CustomizationData.cpp
+                               DeadDeadList.cpp
+                               DeadDeadUnitList.cpp
+                               GameStateTimer.cpp
+                               Level.cpp
+                               MapData.cpp
+                               MissionObjectives.cpp
+                               ObjectZoneInstance.cpp
+                               ObjectZonePlacement.cpp
+                               PlacementVarInstance.cpp
+                               PlayerData.cpp
+                               ProgressionData.cpp
+                               RegionData.cpp
+                               StreamLayerQueue.cpp
+                               StreamLayers.cpp
+                               UnitLightData.cpp
+                               UnitLoadState.cpp
+                               )

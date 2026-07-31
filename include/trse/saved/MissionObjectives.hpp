@@ -18,6 +18,8 @@ typedef enum ObjectiveStateType
 struct ScriptObjectiveType
 {
     uint32_t objectiveType;
+
+    int Render(const char *label);
 };
 
 struct MissionObjectiveData
@@ -30,14 +32,18 @@ struct MissionObjectiveData
     int m_activatedUnit;
     bool m_viewedMission;
     bool m_forceShowOnMap;
+
+    int Render(const char *label);
 };
 
 struct SavedMissionObjectives
 {
     int64_t _padding_[2];
-    int objectivesCount;
+    int32_t objectivesCount;
     uint32_t currentObjective;
     struct MissionObjectiveData objectiveData[0];
+
+    int Render(const char *label);
 
     static constexpr uint8_t SAVED_ID = SAVED_ID_MISSIONOBJECTIVES;
 };

@@ -8,18 +8,24 @@ struct PlayerDialogueData
 {
     uint64_t m_dialoguePackageData[3][512];
     bool m_dialogueSequenceData[3][3072];
+
+    int Render(const char *label);
 };
 
 struct DocumentToClueLinker
 {
     uint32_t documentID;
     uint32_t clueID;
+
+    int Render(const char *label);
 };
 
 struct CollectibleInfo
 {
     bool isUnlocked : 1;
     bool isInfoFound : 1;
+
+    int Render(const char *label);
 };
 
 typedef enum SessionType
@@ -35,6 +41,8 @@ struct PlayerCollectibleData
     struct DocumentToClueLinker m_foundClues[64];
     short m_scheduledLootIndices[64];
     enum SessionType m_sessionType;
+
+    int Render(const char *label);
 };
 
 struct PlayerPersistentData
@@ -58,18 +66,24 @@ struct PlayerPersistentData
     uint8_t m_numArrowsCraftedOfType[4];
     uint32_t m_weaponsViewed[32];
     uint32_t m_activeChallengesProgress[8];
+
+    int Render(const char *label);
 };
 
 struct PlayerPersistentSaveData
 {
     struct PlayerPersistentData playerData;
+
+    int Render(const char *label);
 };
 
 struct SavedPlayerData
 {
     int64_t _padding_;
-    int playerDataCount;
+    int32_t playerDataCount;
     struct PlayerPersistentSaveData playerData[0];
+
+    int Render(const char *label);
 
     static constexpr uint8_t SAVED_ID = SAVED_ID_PLAYERDATA;
 };

@@ -20,8 +20,8 @@ int Init(void)
     // Create window with SDL_Renderer graphics context
     float main_scale = SDL_GetDisplayContentScale(SDL_GetPrimaryDisplay());
     SDL_WindowFlags window_flags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN | SDL_WINDOW_HIGH_PIXEL_DENSITY;
-    SDL_Window *window = SDL_CreateWindow("Dear ImGui SDL3+SDL_Renderer example", (int)(1280 * main_scale),
-                                          (int)(800 * main_scale), window_flags);
+    SDL_Window *window =
+        SDL_CreateWindow("Tomb Raider Save Editor", (int)(1280 * main_scale), (int)(800 * main_scale), window_flags);
     if (window == nullptr)
     {
         return TRSE_ERR_WINDOW;

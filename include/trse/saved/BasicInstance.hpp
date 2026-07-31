@@ -12,6 +12,8 @@ struct SavedBasicInstance
     uint32_t componentDataSize;
     struct PlacementHashKey hashKey;
 
+    int Render(const char *label);
+
     static constexpr uint8_t SAVED_ID = SAVED_ID_BASIC_INSTANCE;
 };
 }; // namespace TRSE

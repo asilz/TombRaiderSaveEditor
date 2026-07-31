@@ -14,6 +14,8 @@ struct SavedProgressionData
     uint8_t numVolatilePersistenceHelpers;
     struct PlacementHashKey persistenceHelpers[0];
 
+    int Render(const char *label);
+
     static constexpr uint8_t SAVED_ID = SAVED_ID_PROGRESSION_DATA;
 };
 

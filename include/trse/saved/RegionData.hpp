@@ -2,6 +2,7 @@
 
 #include <trse/Hash.hpp>
 #include <trse/SaveInfo.hpp>
+#include <trse/saved/MissionObjectives.hpp>
 
 namespace TRSE
 {
@@ -10,11 +11,8 @@ struct HuntManagerInfo
 {
     struct PlacementHashKey m_huntManagerPlacement;
     float m_deathTimes[25][6];
-};
 
-struct ScriptObjectiveType
-{
-    uint32_t objectiveType;
+    int Render(const char *label);
 };
 
 typedef enum FastTravelState
@@ -83,6 +81,8 @@ struct RegionInfo
     bool m_isRetraversable;
     bool m_countsTowardPercentComplete;
     struct ScriptObjectiveType m_activeMissionID;
+
+    int Render(const char *label);
 };
 
 struct SavedRegionData
@@ -91,6 +91,8 @@ struct SavedRegionData
     struct HuntManagerInfo huntManagerInfo[35];
     uint32_t numRegions;
     struct RegionInfo regions[0];
+
+    int Render(const char *label);
 
     static constexpr uint8_t SAVED_ID = SAVED_ID_REGIONDATA;
 };

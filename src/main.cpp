@@ -15,6 +15,7 @@ using namespace TRSE;
 
 int main(void)
 {
+    char path[512] = "No file";
     SaveInfo saveInfo;
     GUI::Init();
 
@@ -26,13 +27,13 @@ int main(void)
         }
 
         {
+            ImGui::Begin(path);
 
-            ImGui::Begin("Hello, world!");
             if (saveInfo.m_infoSize)
             {
+
                 if (ImGui::Button("Export File"))
                 {
-                    char path[512];
                     GUI::FileSavePath(path, sizeof(path));
                     FILE *file = fopen(path, "wb");
                     if (file != nullptr)
@@ -51,7 +52,6 @@ int main(void)
             {
                 if (ImGui::Button("Import File"))
                 {
-                    char path[512];
                     GUI::FileBrowsePath(path, sizeof(path));
                     FILE *file = fopen(path, "rb");
                     if (file != nullptr)
