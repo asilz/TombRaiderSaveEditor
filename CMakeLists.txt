@@ -7,6 +7,8 @@ set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
+set(BUILD_SHARED_LIBS OFF)
+
 if(UNIX)
     if(APPLE)
         set(TRSE_TARGET_PLATFROM macos)
@@ -14,7 +16,6 @@ if(UNIX)
         set(TRSE_TARGET_PLATFROM linux)
     endif()
 else()
-    set(BUILD_SHARED_LIBS OFF)
     set(TRSE_TARGET_PLATFROM win32)
 endif()
 

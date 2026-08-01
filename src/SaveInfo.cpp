@@ -1,18 +1,8 @@
-// TODO: Fix this mess
-
-#define ZLIB_CONST
-#ifndef Z_ARG /* function prototypes for stdarg */
-#if defined(STDC) || defined(Z_HAVE_STDARG_H)
-#define Z_ARG(args) args
-#else
-#define Z_ARG(args) ()
-#endif
-#endif
-
 #include <cinttypes>
 #include <cstdio>
 #include <imgui.h>
 #include <trse/SaveInfo.hpp>
+#include <trse/gui/Render.hpp>
 #include <trse/saved/ActionGraph.hpp>
 #include <trse/saved/BasicInstance.hpp>
 #include <trse/saved/Campsites.hpp>
@@ -99,15 +89,58 @@ int SaveInfo::PackSaveInfo(unsigned char *output, unsigned int *output_size)
     return 0;
 }
 
+int SystemTime::Render(const char *label)
+{
+    if (ImGui::TreeNode(label))
+    {
+        GUI::Render(m_ordinal, "m_ordinal");
+        GUI::Render(m_year, "m_year");
+        GUI::Render(m_milliseconds, "m_milliseconds");
+        GUI::Render(m_month, "m_month");
+        GUI::Render(m_dayOfWeek, "m_dayOfWeek");
+        GUI::Render(m_day, "m_day");
+        GUI::Render(m_hour, "m_hour");
+        GUI::Render(m_minute, "m_minute");
+        GUI::Render(m_second, "m_second");
+
+        ImGui::TreePop();
+        return TRSE_RET_IMGUI_EDIT;
+    }
+    return 0;
+}
+
+int SaveProgressData::Render(const char *label)
+{
+    if (ImGui::TreeNode(label))
+    {
+        GUI::Render(m_saveTime, "m_saveTime");
+        GUI::Render(m_playTime, "m_playTime");
+        GUI::Render(m_regionIndex, "m_regionIndex");
+        GUI::Render(m_corrupted, "m_corrupted");
+        GUI::Render(m_globalProgressLevel, "m_globalProgressLevel");
+        GUI::Render(m_percentComplete, "m_percentComplete");
+        GUI::Render(m_percentInstalled, "m_percentInstalled");
+        GUI::Render(m_gameDifficulty, "m_gameDifficulty");
+
+        ImGui::TreePop();
+        return TRSE_RET_IMGUI_EDIT;
+    }
+    return 0;
+}
+
 int SaveInfo::Render(const char *label)
 {
     ImGui::Text(label);
     int i = 0;
+    int ret = 0;
+
+    GUI::Render(m_saveProgressData, "m_saveProgressData");
+
     // TODO: Figure out why newer binary seems to use 24 bits of info size for the actual size
     for (uint8_t *info = m_infoStart; info < m_infoStart + (m_infoSize & 0xffffff);
          info = info + (*(reinterpret_cast<uint32_t *>(info)) >> 6 & 0x3fffffc))
     {
-        int ret;
+
         ImGui::PushID(i++);
         switch (*info)
         {
@@ -182,6 +215,6 @@ int SaveInfo::Render(const char *label)
         ImGui::PopID();
     }
 
-    return 0;
+    return ret;
 }
 }; // namespace TRSE

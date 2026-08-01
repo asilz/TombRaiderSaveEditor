@@ -17,6 +17,8 @@ struct SystemTime
     uint8_t m_hour;
     uint8_t m_minute;
     uint8_t m_second;
+
+    int Render(const char *label);
 };
 
 struct SaveProgressData
@@ -29,6 +31,8 @@ struct SaveProgressData
     float m_percentComplete;
     float m_percentInstalled;
     uint8_t m_gameDifficulty;
+
+    int Render(const char *label);
 };
 
 struct BlockInfo
