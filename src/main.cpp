@@ -53,6 +53,10 @@ int main(void)
                         delete[] dst;
                     }
                 }
+                if (ImGui::Button("Set Backward Compatible"))
+                {
+                    saveInfo.SetBackwardCompatible();
+                }
                 GUI::Render(saveInfo, "SaveInfo");
             }
             else

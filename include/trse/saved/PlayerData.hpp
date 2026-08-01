@@ -79,7 +79,7 @@ struct PlayerPersistentSaveData
 
 struct SavedPlayerData
 {
-    int64_t _padding_;
+    int64_t _padding_[2];
     int32_t playerDataCount;
     struct PlayerPersistentSaveData playerData[0];
 

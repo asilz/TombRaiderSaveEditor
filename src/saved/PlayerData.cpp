@@ -70,7 +70,7 @@ int PlayerCollectibleData::Render(const char *label)
         for (size_t i = 0; i < IM_ARRAYSIZE(m_foundClues); ++i)
         {
             ImGui::PushID(i);
-            GUI::Render(m_foundClues[i], "m_foundCollectibles");
+            GUI::Render(m_foundClues[i], "m_foundClues");
             ImGui::PopID();
         }
         for (size_t i = 0; i < IM_ARRAYSIZE(m_scheduledLootIndices); ++i)

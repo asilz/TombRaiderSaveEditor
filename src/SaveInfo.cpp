@@ -89,6 +89,12 @@ int SaveInfo::PackSaveInfo(unsigned char *output, unsigned int *output_size)
     return 0;
 }
 
+int SaveInfo::SetBackwardCompatible(void)
+{
+    m_infoSize = m_infoSize & 0xffffff;
+    return 0;
+}
+
 int SystemTime::Render(const char *label)
 {
     if (ImGui::TreeNode(label))

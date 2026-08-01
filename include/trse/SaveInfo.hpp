@@ -103,6 +103,8 @@ struct SaveInfo
 
     int PackSaveInfo(unsigned char *output, unsigned int *output_size);
 
+    int SetBackwardCompatible(void);
+
     template <typename T> T *GetBlock()
     {
         for (uint8_t *info = m_infoStart; info < m_infoStart + m_infoSize;
